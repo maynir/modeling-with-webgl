@@ -22,13 +22,20 @@ const colors = {
 	magenta: 0xff00ff,
 	white: 0xffffff,
 	black: 0x000000,
+	gray: 0xC0C0C0
 };
 const goalMaterial = new THREE.MeshBasicMaterial({ color: colors.white });
+const ballMaterial = new THREE.MeshBasicMaterial({ color: colors.black });
+const netMaterial = new THREE.MeshBasicMaterial({ color: colors.gray });
+const materials = [goalMaterial, ballMaterial, netMaterial];
 
 // Add here the rendering of your goal
 
 // Create the front goalposts
-const frontGoalpostGeometry = new THREE.CylinderGeometry(0.1, 0.1, 2, 32);
+const frontGoalpostRadius = 0.1;
+const frontGoalpostWidth = 2;
+const frontGoalpostHeight = 32;
+const frontGoalpostGeometry = new THREE.CylinderGeometry(frontGoalpostRadius, frontGoalpostRadius, frontGoalpostWidth, frontGoalpostHeight);
 const frontGoalpost1 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 const frontGoalpost2 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 frontGoalpost1.position.set(-2, 1, -5);
@@ -37,11 +44,11 @@ scene.add(frontGoalpost1);
 scene.add(frontGoalpost2);
 
 // Create rings/toruses for the goalposts
-const goalpostRingGeometry = new THREE.TorusGeometry(0.3, 0.05, 16, 32);
+const goalpostRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const goalpostRing1 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
 const goalpostRing2 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
-goalpostRing1.position.set(-2, 2, -5);
-goalpostRing2.position.set(2, 2, -5);
+goalpostRing1.position.set(-2, 0, -5);
+goalpostRing2.position.set(2, 0, -5);
 scene.add(goalpostRing1);
 scene.add(goalpostRing2);
 
@@ -55,17 +62,11 @@ scene.add(backSupport1);
 scene.add(backSupport2);
 
 // Create rings/toruses for the back supports
-const backSupportRingGeometry = new THREE.TorusGeometry(0.3, 0.05, 16, 32);
-const backSupportRing1 = new THREE.Mesh(
-	backSupportRingGeometry,
-	goalMaterial
-);
-const backSupportRing2 = new THREE.Mesh(
-	backSupportRingGeometry,
-	goalMaterial
-);
-backSupportRing1.position.set(-2, 2.5, -9);
-backSupportRing2.position.set(2, 2.5, -9);
+const backSupportRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+const backSupportRing1 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
+const backSupportRing2 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
+backSupportRing1.position.set(-2, 0, -9);
+backSupportRing2.position.set(2, 0, -9);
 scene.add(backSupportRing1);
 scene.add(backSupportRing2);
 
@@ -78,30 +79,27 @@ scene.add(crossbar);
 
 // Create the side nets
 const sideNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
-const sideNet1 = new THREE.Mesh(sideNetGeometry, goalMaterial);
-const sideNet2 = new THREE.Mesh(sideNetGeometry, goalMaterial);
-sideNet1.position.set(0, 1, -5.9);
-sideNet1.rotation.y = Math.PI / 2;
-sideNet2.position.set(0, 1, -9.1);
-sideNet2.rotation.y = Math.PI / 2;
-scene.add(sideNet1);
-scene.add(sideNet2);
-
+const rightNet1 = new THREE.Mesh(sideNetGeometry, netMaterial);
+const leftNet2 = new THREE.Mesh(sideNetGeometry, netMaterial);
+rightNet1.position.set(2, 1, -7);
+rightNet1.rotation.y = Math.PI / 2;
+leftNet2.position.set(-2, 1, -7);
+leftNet2.rotation.y = Math.PI / 2;
+scene.add(rightNet1);
+scene.add(leftNet2);
 
 // Create the back net
 const backNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
-const backNet = new THREE.Mesh(backNetGeometry, goalMaterial);
+const backNet = new THREE.Mesh(backNetGeometry, netMaterial);
 backNet.position.set(0, 1, -7);
 scene.add(backNet);
 
 // Create the ball
-const ballMaterial = new THREE.MeshBasicMaterial({ color: colors.black });
 const ballGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
 ball.position.set(0, 0.2, -7);
 scene.add(ball);
 
-const materials = [goalMaterial, ballMaterial];
 
 // This defines the initial distance of the camera
 const cameraTranslate = new THREE.Matrix4();
