@@ -33,9 +33,9 @@ const materials = [goalMaterial, ballMaterial, netMaterial];
 
 // Create the front goalposts
 const frontGoalpostRadius = 0.1;
-const frontGoalpostWidth = 2;
-const frontGoalpostHeight = 32;
-const frontGoalpostGeometry = new THREE.CylinderGeometry(frontGoalpostRadius, frontGoalpostRadius, frontGoalpostWidth, frontGoalpostHeight);
+const frontGoalpostHeight = 2;
+const frontGoalpostRadialSegments = 32;
+const frontGoalpostGeometry = new THREE.CylinderGeometry(frontGoalpostRadius, frontGoalpostRadius, frontGoalpostHeight, frontGoalpostRadialSegments);
 const frontGoalpost1 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 const frontGoalpost2 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 frontGoalpost1.position.set(-2, 1, -5);
@@ -53,7 +53,10 @@ scene.add(goalpostRing1);
 scene.add(goalpostRing2);
 
 // Create the back supports
-const backSupportGeometry = new THREE.CylinderGeometry(0.1, 0.1, 3, 32);
+const backSupportRadius = 0.1;
+const backSupportHeight = 3;
+const backSupportRadialSegments = 32;
+const backSupportGeometry = new THREE.CylinderGeometry(backSupportRadius, backSupportRadius, backSupportHeight, backSupportRadialSegments);
 const backSupport1 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 const backSupport2 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 backSupport1.position.set(-2, 1.5, -9);
