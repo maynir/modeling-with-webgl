@@ -39,8 +39,8 @@ const frontGoalpostGeometry = new THREE.CylinderGeometry(frontGoalpostRadius, fr
 const frontGoalpost1 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 const frontGoalpost2 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 
-makeTranslation(frontGoalpost1, -2, 1, -5);
-makeTranslation(frontGoalpost2,2, 1, -5)
+makeTranslation(frontGoalpost1, -3, 1, -5);
+makeTranslation(frontGoalpost2,3, 1, -5)
 
 scene.add(frontGoalpost1);
 scene.add(frontGoalpost2);
@@ -50,8 +50,8 @@ const goalpostRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const goalpostRing1 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
 const goalpostRing2 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
 
-makeTranslation(goalpostRing1, -2, 0, -5)
-makeTranslation(goalpostRing2, 2, 0, -5)
+makeTranslation(goalpostRing1, -3, 0, -5)
+makeTranslation(goalpostRing2, 3, 0, -5)
 
 scene.add(goalpostRing1);
 scene.add(goalpostRing2);
@@ -64,8 +64,8 @@ const backSupportGeometry = new THREE.CylinderGeometry(backSupportRadius, backSu
 const backSupport1 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 const backSupport2 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 
-makeTranslation(backSupport1, -2, 1.5, -9);
-makeTranslation(backSupport2, 2, 1.5, -9);
+makeTranslation(backSupport1, -3, 1.5, -9);
+makeTranslation(backSupport2, 3, 1.5, -9);
 
 scene.add(backSupport1);
 scene.add(backSupport2);
@@ -75,14 +75,14 @@ const backSupportRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const backSupportRing1 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
 const backSupportRing2 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
 
-makeTranslation(backSupportRing1, -2, 0, -9);
-makeTranslation(backSupportRing2, 2, 0, -9);
+makeTranslation(backSupportRing1, -3, 0, -9);
+makeTranslation(backSupportRing2, 3, 0, -9);
 
 scene.add(backSupportRing1);
 scene.add(backSupportRing2);
 
 // Create the crossbar
-const crossbarGeometry = new THREE.CylinderGeometry(0.1, 0.1, 4, 32);
+const crossbarGeometry = new THREE.CylinderGeometry(0.1, 0.1, 6, 32);
 const crossbar = new THREE.Mesh(crossbarGeometry, goalMaterial);
 makeRotationX(crossbar, 90)
 makeRotationY(crossbar, 90)
@@ -95,15 +95,15 @@ const rightNet = new THREE.Mesh(sideNetGeometry, netMaterial);
 const leftNet = new THREE.Mesh(sideNetGeometry, netMaterial);
 
 makeRotationY(rightNet, 90)
-makeTranslation(rightNet, 2, 1, -7);
+makeTranslation(rightNet, 3, 1, -7);
 makeRotationY(leftNet, 90)
-makeTranslation(leftNet, -2, 1, -7);
+makeTranslation(leftNet, -3, 1, -7);
 
 scene.add(rightNet);
 scene.add(leftNet);
 
 // Create the back net
-const backNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
+const backNetGeometry = new THREE.PlaneGeometry(6, 2, 1, 1);
 const backNet = new THREE.Mesh(backNetGeometry, netMaterial);
 makeTranslation(backNet, 0, 1, -9);
 scene.add(backNet);
