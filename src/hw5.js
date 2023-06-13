@@ -84,8 +84,8 @@ scene.add(backSupportRing2);
 // Create the crossbar
 const crossbarGeometry = new THREE.CylinderGeometry(0.1, 0.1, 4, 32);
 const crossbar = new THREE.Mesh(crossbarGeometry, goalMaterial);
-crossbar.rotation.x = Math.PI / 2;
-crossbar.rotation.z = Math.PI / 2;
+makeRotationX(crossbar, 90)
+makeRotationY(crossbar, 90)
 makeTranslation(crossbar, 0, 2, -5);
 scene.add(crossbar);
 
@@ -93,10 +93,12 @@ scene.add(crossbar);
 const sideNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
 const rightNet = new THREE.Mesh(sideNetGeometry, netMaterial);
 const leftNet = new THREE.Mesh(sideNetGeometry, netMaterial);
+
+makeRotationY(rightNet, 90)
 makeTranslation(rightNet, 2, 1, -7);
-rightNet.rotation.y = Math.PI / 2;
+makeRotationY(leftNet, 90)
 makeTranslation(leftNet, -2, 1, -7);
-leftNet.rotation.y = Math.PI / 2;
+
 scene.add(rightNet);
 scene.add(leftNet);
 
@@ -154,6 +156,18 @@ function makeTranslation(object, x, y, z) {
 	const tanslateMatrix = new THREE.Matrix4();
 	tanslateMatrix.makeTranslation( x, y, z);
 	object.applyMatrix4(tanslateMatrix);
+}
+
+function makeRotationX(object, deg) {
+	const rotationMatrix = new THREE.Matrix4();
+	rotationMatrix.makeRotationX(degrees_to_radians(deg));
+	object.applyMatrix4(rotationMatrix);
+}
+
+function makeRotationY(object, deg) {
+	const rotationMatrix = new THREE.Matrix4();
+	rotationMatrix.makeRotationY(degrees_to_radians(deg));
+	object.applyMatrix4(rotationMatrix);
 }
 
 function animate() {
