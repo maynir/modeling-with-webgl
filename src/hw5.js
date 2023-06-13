@@ -74,7 +74,8 @@ scene.add(backSupportRing2);
 const crossbarGeometry = new THREE.CylinderGeometry(0.1, 0.1, 4, 32);
 const crossbar = new THREE.Mesh(crossbarGeometry, goalMaterial);
 crossbar.rotation.x = Math.PI / 2;
-crossbar.position.set(0, 3, -7);
+crossbar.rotation.z = Math.PI / 2;
+crossbar.position.set(0, 2, -5);
 scene.add(crossbar);
 
 // Create the side nets
