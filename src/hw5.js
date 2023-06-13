@@ -39,12 +39,8 @@ const frontGoalpostGeometry = new THREE.CylinderGeometry(frontGoalpostRadius, fr
 const frontGoalpost1 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 const frontGoalpost2 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 
-const frontGoalpost1Translate = new THREE.Matrix4();
-frontGoalpost1Translate.makeTranslation(-2, 1, -5);
-frontGoalpost1.applyMatrix4(frontGoalpost1Translate);
-const frontGoalpost2Translate = new THREE.Matrix4();
-frontGoalpost2Translate.makeTranslation(2, 1, -5);
-frontGoalpost2.applyMatrix4(frontGoalpost2Translate);
+makeTranslation(frontGoalpost1, -2, 1, -5);
+makeTranslation(frontGoalpost2,2, 1, -5)
 
 scene.add(frontGoalpost1);
 scene.add(frontGoalpost2);
@@ -54,12 +50,8 @@ const goalpostRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const goalpostRing1 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
 const goalpostRing2 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
 
-const goalpostRing1Translate = new THREE.Matrix4();
-goalpostRing1Translate.makeTranslation(-2, 0, -5);
-goalpostRing1.applyMatrix4(goalpostRing1Translate);
-const goalpostRingTranslate2 = new THREE.Matrix4();
-goalpostRingTranslate2.makeTranslation(2, 0, -5);
-goalpostRing2.applyMatrix4(goalpostRingTranslate2);
+makeTranslation(goalpostRing1, -2, 0, -5)
+makeTranslation(goalpostRing2, 2, 0, -5)
 
 scene.add(goalpostRing1);
 scene.add(goalpostRing2);
@@ -72,12 +64,8 @@ const backSupportGeometry = new THREE.CylinderGeometry(backSupportRadius, backSu
 const backSupport1 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 const backSupport2 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 
-const backSupport1Translate = new THREE.Matrix4();
-backSupport1Translate.makeTranslation(-2, 1.5, -9);
-backSupport1.applyMatrix4(backSupport1Translate);
-const backSupport2Translate = new THREE.Matrix4();
-backSupport2Translate.makeTranslation(2, 1.5, -9);
-backSupport2.applyMatrix4(backSupport2Translate);
+makeTranslation(backSupport1, -2, 1.5, -9);
+makeTranslation(backSupport2, 2, 1.5, -9);
 
 scene.add(backSupport1);
 scene.add(backSupport2);
@@ -87,12 +75,8 @@ const backSupportRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const backSupportRing1 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
 const backSupportRing2 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
 
-const backSupportRing1Translate = new THREE.Matrix4();
-backSupportRing1Translate.makeTranslation(-2, 0, -9);
-backSupportRing1.applyMatrix4(backSupportRing1Translate);
-const backSupportRing2Translate = new THREE.Matrix4();
-backSupportRing2Translate.makeTranslation(2, 0, -9);
-backSupportRing2.applyMatrix4(backSupportRing2Translate);
+makeTranslation(backSupportRing1, -2, 0, -9);
+makeTranslation(backSupportRing2, 2, 0, -9);
 
 scene.add(backSupportRing1);
 scene.add(backSupportRing2);
@@ -102,22 +86,16 @@ const crossbarGeometry = new THREE.CylinderGeometry(0.1, 0.1, 4, 32);
 const crossbar = new THREE.Mesh(crossbarGeometry, goalMaterial);
 crossbar.rotation.x = Math.PI / 2;
 crossbar.rotation.z = Math.PI / 2;
-const crossbarTranslate = new THREE.Matrix4();
-crossbarTranslate.makeTranslation(0, 2, -5);
-crossbar.applyMatrix4(crossbarTranslate);
+makeTranslation(crossbar, 0, 2, -5);
 scene.add(crossbar);
 
 // Create the side nets
 const sideNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
 const rightNet = new THREE.Mesh(sideNetGeometry, netMaterial);
 const leftNet = new THREE.Mesh(sideNetGeometry, netMaterial);
-const rightNetTranslate = new THREE.Matrix4();
-rightNetTranslate.makeTranslation(2, 1, -7);
-rightNet.applyMatrix4(rightNetTranslate);
+makeTranslation(rightNet, 2, 1, -7);
 rightNet.rotation.y = Math.PI / 2;
-const leftNetTranslate = new THREE.Matrix4();
-leftNetTranslate.makeTranslation(-2, 1, -7);
-leftNet.applyMatrix4(leftNetTranslate);
+makeTranslation(leftNet, -2, 1, -7);
 leftNet.rotation.y = Math.PI / 2;
 scene.add(rightNet);
 scene.add(leftNet);
@@ -125,17 +103,13 @@ scene.add(leftNet);
 // Create the back net
 const backNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
 const backNet = new THREE.Mesh(backNetGeometry, netMaterial);
-const backNetTranslate = new THREE.Matrix4();
-backNetTranslate.makeTranslation(0, 1, -9);
-backNet.applyMatrix4(backNetTranslate);
+makeTranslation(backNet, 0, 1, -9);
 scene.add(backNet);
 
 // Create the ball
 const ballGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
-const ballTranslate = new THREE.Matrix4();
-ballTranslate.makeTranslation(0, 0.2, -3);
-ball.applyMatrix4(ballTranslate);
+makeTranslation(ball, 0, 0.2, -3);
 scene.add(ball);
 
 
@@ -175,6 +149,12 @@ document.addEventListener('keydown',toggleWireframe)
 
 //controls.update() must be called after any manual changes to the camera's transform
 controls.update();
+
+function makeTranslation(object, x, y, z) {
+	const tanslateMatrix = new THREE.Matrix4();
+	tanslateMatrix.makeTranslation( x, y, z);
+	object.applyMatrix4(tanslateMatrix);
+}
 
 function animate() {
 
