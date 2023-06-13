@@ -91,7 +91,7 @@ scene.add(leftNet2);
 // Create the back net
 const backNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
 const backNet = new THREE.Mesh(backNetGeometry, netMaterial);
-backNet.position.set(0, 1, -7);
+backNet.position.set(0, 1, -9);
 scene.add(backNet);
 
 // Create the ball
