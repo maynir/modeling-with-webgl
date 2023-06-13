@@ -105,7 +105,7 @@ const materials = [goalMaterial, ballMaterial];
 
 // This defines the initial distance of the camera
 const cameraTranslate = new THREE.Matrix4();
-cameraTranslate.makeTranslation(50, 0, 50); // sets the camera origin
+cameraTranslate.makeTranslation(0, 0, 5); // sets the camera origin
 camera.applyMatrix4(cameraTranslate)
 
 renderer.render( scene, camera );
