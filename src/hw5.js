@@ -98,7 +98,7 @@ scene.add(backNet);
 // Create the ball
 const ballGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
-ball.position.set(0, 0.2, -7);
+ball.position.set(0, 0.2, -3);
 scene.add(ball);
 
 
