@@ -26,7 +26,7 @@ const colors = {
 };
 const goalMaterial = new THREE.MeshBasicMaterial({ color: colors.white });
 const ballMaterial = new THREE.MeshBasicMaterial({ color: colors.black });
-const netMaterial = new THREE.MeshBasicMaterial({ color: colors.gray });
+const netMaterial = new THREE.MeshBasicMaterial({ color: colors.gray, side: THREE.DoubleSide });
 const materials = [goalMaterial, ballMaterial, netMaterial];
 
 // Add here the rendering of your goal
@@ -99,7 +99,6 @@ const ballGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
 makeTranslation(ball, 0, 0.2, -3);
 
-
 const skelton = new THREE.Group();
 skelton.add(frontGoalpost1);
 skelton.add(frontGoalpost2);
@@ -122,6 +121,7 @@ goal.add(nets);
 
 scene.add(goal);
 scene.add(ball);
+scene.add(camera);
 
 // This defines the initial distance of the camera
 const cameraTranslate = new THREE.Matrix4();
