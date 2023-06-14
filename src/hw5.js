@@ -42,9 +42,6 @@ const frontGoalpost2 = new THREE.Mesh(frontGoalpostGeometry, goalMaterial);
 makeTranslation(frontGoalpost1, -3, 1, -5);
 makeTranslation(frontGoalpost2,3, 1, -5)
 
-scene.add(frontGoalpost1);
-scene.add(frontGoalpost2);
-
 // Create rings/toruses for the goalposts
 const goalpostRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const goalpostRing1 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
@@ -52,9 +49,6 @@ const goalpostRing2 = new THREE.Mesh(goalpostRingGeometry, goalMaterial);
 
 makeTranslation(goalpostRing1, -3, 0, -5)
 makeTranslation(goalpostRing2, 3, 0, -5)
-
-scene.add(goalpostRing1);
-scene.add(goalpostRing2);
 
 // Create the back supports
 const backSupportRadius = 0.1;
@@ -69,9 +63,6 @@ makeTranslation(backSupport1, -3, 1, -6);
 makeRotationX(backSupport2, 45)
 makeTranslation(backSupport2, 3, 1, -6);
 
-scene.add(backSupport1);
-scene.add(backSupport2);
-
 // Create rings/toruses for the back supports
 const backSupportRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const backSupportRing1 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
@@ -80,16 +71,12 @@ const backSupportRing2 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
 makeTranslation(backSupportRing1, -3, 0, -7);
 makeTranslation(backSupportRing2, 3, 0, -7);
 
-scene.add(backSupportRing1);
-scene.add(backSupportRing2);
-
 // Create the crossbar
 const crossbarGeometry = new THREE.CylinderGeometry(0.1, 0.1, 6, 32);
 const crossbar = new THREE.Mesh(crossbarGeometry, goalMaterial);
 makeRotationX(crossbar, 90)
 makeRotationY(crossbar, 90)
 makeTranslation(crossbar, 0, 2, -5);
-scene.add(crossbar);
 
 // Create the side nets
 const sideNetGeometry = new THREE.PlaneGeometry(4, 2, 1, 1);
@@ -101,22 +88,40 @@ makeTranslation(rightNet, 3, 1, -7);
 makeRotationY(leftNet, 90)
 makeTranslation(leftNet, -3, 1, -7);
 
-scene.add(rightNet);
-scene.add(leftNet);
-
 // Create the back net
 const backNetGeometry = new THREE.PlaneGeometry(6, 3, 1, 1);
 const backNet = new THREE.Mesh(backNetGeometry, netMaterial);
 makeRotationX(backNet, 45);
 makeTranslation(backNet, 0, 1, -6);
-scene.add(backNet);
 
 // Create the ball
 const ballGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
 makeTranslation(ball, 0, 0.2, -3);
-scene.add(ball);
 
+
+const skelton = new THREE.Group();
+skelton.add(frontGoalpost1);
+skelton.add(frontGoalpost2);
+skelton.add(goalpostRing1);
+skelton.add(goalpostRing2);
+skelton.add(backSupport1);
+skelton.add(backSupport2);
+skelton.add(backSupportRing1);
+skelton.add(backSupportRing2);
+skelton.add(crossbar);
+
+const nets = new THREE.Group();
+nets.add(rightNet);
+nets.add(leftNet);
+nets.add(backNet);
+
+const goal = new THREE.Group();
+goal.add(skelton);
+goal.add(nets);
+
+scene.add(goal);
+scene.add(ball);
 
 // This defines the initial distance of the camera
 const cameraTranslate = new THREE.Matrix4();
