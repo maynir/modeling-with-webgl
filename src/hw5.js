@@ -64,8 +64,10 @@ const backSupportGeometry = new THREE.CylinderGeometry(backSupportRadius, backSu
 const backSupport1 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 const backSupport2 = new THREE.Mesh(backSupportGeometry, goalMaterial);
 
-makeTranslation(backSupport1, -3, 1.5, -9);
-makeTranslation(backSupport2, 3, 1.5, -9);
+makeRotationX(backSupport1, 45)
+makeTranslation(backSupport1, -3, 1, -6);
+makeRotationX(backSupport2, 45)
+makeTranslation(backSupport2, 3, 1, -6);
 
 scene.add(backSupport1);
 scene.add(backSupport2);
@@ -75,8 +77,8 @@ const backSupportRingGeometry = new THREE.SphereGeometry(0.2, 32, 32);
 const backSupportRing1 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
 const backSupportRing2 = new THREE.Mesh(backSupportRingGeometry, goalMaterial);
 
-makeTranslation(backSupportRing1, -3, 0, -9);
-makeTranslation(backSupportRing2, 3, 0, -9);
+makeTranslation(backSupportRing1, -3, 0, -7);
+makeTranslation(backSupportRing2, 3, 0, -7);
 
 scene.add(backSupportRing1);
 scene.add(backSupportRing2);
@@ -103,9 +105,10 @@ scene.add(rightNet);
 scene.add(leftNet);
 
 // Create the back net
-const backNetGeometry = new THREE.PlaneGeometry(6, 2, 1, 1);
+const backNetGeometry = new THREE.PlaneGeometry(6, 3, 1, 1);
 const backNet = new THREE.Mesh(backNetGeometry, netMaterial);
-makeTranslation(backNet, 0, 1, -9);
+makeRotationX(backNet, 45);
+makeTranslation(backNet, 0, 1, -6);
 scene.add(backNet);
 
 // Create the ball
@@ -167,6 +170,12 @@ function makeRotationX(object, deg) {
 function makeRotationY(object, deg) {
 	const rotationMatrix = new THREE.Matrix4();
 	rotationMatrix.makeRotationY(degrees_to_radians(deg));
+	object.applyMatrix4(rotationMatrix);
+}
+
+function makeRotationZ(object, deg) {
+	const rotationMatrix = new THREE.Matrix4();
+	rotationMatrix.makeRotationZ(degrees_to_radians(deg));
 	object.applyMatrix4(rotationMatrix);
 }
 
