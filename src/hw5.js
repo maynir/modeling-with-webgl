@@ -101,9 +101,9 @@ makeRotationX(backNet, 45);
 makeTranslation(backNet, 0, 1, -6);
 
 // Create the ball
-const ballGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+const ballGeometry = new THREE.SphereGeometry(0.25, 32, 32);
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
-makeTranslation(ball, 0, 0.2, -3);
+makeTranslation(ball, 0, 0, -3);
 
 const skelton = new THREE.Group();
 skelton.add(frontGoalpost1);
