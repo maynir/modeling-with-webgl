@@ -79,14 +79,20 @@ makeRotationY(crossbar, 90)
 makeTranslation(crossbar, 0, 2, -5);
 
 // Create the side nets
-const sideNetGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+const triangleVertices = [
+	new THREE.Vector2(0, 0),
+	new THREE.Vector2(2, 0),
+	new THREE.Vector2(0, 2)
+];
+const triangleShape = new THREE.Shape(triangleVertices);
+const sideNetGeometry = new THREE.ShapeGeometry(triangleShape);
 const rightNet = new THREE.Mesh(sideNetGeometry, netMaterial);
 const leftNet = new THREE.Mesh(sideNetGeometry, netMaterial);
 
 makeRotationY(rightNet, 90)
-makeTranslation(rightNet, 3, 1, -6);
+makeTranslation(rightNet, 3, 0, -5);
 makeRotationY(leftNet, 90)
-makeTranslation(leftNet, -3, 1, -6);
+makeTranslation(leftNet, -3, 0, -5);
 
 // Create the back net
 const backNetGeometry = new THREE.PlaneGeometry(6, 3, 1, 1);
